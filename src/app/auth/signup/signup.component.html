@@ -1,0 +1,64 @@
+<div class="flex signup-container justify-content-center align-items-center m-auto w-8">
+  <form (ngSubmit)="signup()" [formGroup]="signupForm">
+    <div class="p-card p-shadow p-4 signup-card">
+      <h2 class="text-center">Signup</h2>
+      <div class="p-field m-4 flex justify-content-center align-items-center">
+        <p-floatLabel variant="in">
+          <input autocomplete="false" formControlName="username" id="username" pInputText type="text">
+          <label for="username">Username</label>
+        </p-floatLabel>
+      </div>
+      <div class="p-field m-4 flex justify-content-center align-items-center">
+        <p-floatLabel variant="in">
+          <input formControlName="firstName" id="firstName" pInputText type="text">
+          <label for="firstName">First Name</label>
+        </p-floatLabel>
+      </div>
+      <div class="p-field m-4 flex justify-content-center align-items-center">
+        <p-floatLabel variant="in">
+          <input formControlName="lastName" id="lastName" pInputText type="text">
+          <label for="lastName">Last Name</label>
+        </p-floatLabel>
+      </div>
+      <div class="p-field m-4 flex justify-content-center align-items-center">
+        <p-floatLabel variant="in">
+          <input formControlName="contactNumber" id="contactNumber" pInputText type="text">
+          <label for="contactNumber">Contact Number</label>
+        </p-floatLabel>
+      </div>
+      <div class="p-field m-4 flex justify-content-center align-items-center">
+        <p-floatLabel variant="in">
+          <input formControlName="password" id="password" pInputText type="password">
+          <label for="password">Password</label>
+        </p-floatLabel>
+      </div>
+      <div class="p-field m-4 flex justify-content-center align-items-center">
+        <p-floatLabel variant="in">
+          <input formControlName="retypePassword" id="retypePwd" pInputText type="password">
+          <label for="retypePwd">Retype Password</label>
+        </p-floatLabel>
+      </div>
+      <div class="p-field m-4 flex flex-wrap gap-4 justify-content-center align-items-center">
+        <p-button (onClick)="reset()" icon="pi pi-trash" label="Reset" />
+        <p-button icon="pi pi-save" label="Signup" type="submit" />
+        <p-button icon="pi pi-times" label="Cancel" routerLink="/" />
+      </div>
+    </div>
+  </form>
+</div>
+
+<p-toast [baseZIndex]="5000"
+         [style]="{width:'75vh'}"
+         key="signup-toast"
+         position="bottom-center">
+  <ng-template let-message pTemplate="message">
+    <div class="flex flex-column align-items-start" style="flex: 1">
+      <div class="font-medium text-lg my-3 text-900">
+        {{message.summary}}
+      </div>
+      <div class="font-medium text-lg my-3 text-700">
+        {{message.detail}}
+      </div>
+    </div>
+  </ng-template>
+</p-toast>

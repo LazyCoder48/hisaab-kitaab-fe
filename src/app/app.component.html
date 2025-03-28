@@ -1,0 +1,70 @@
+<div class="app-wrapper transparent-text">
+    @if (!isLoggedIn) {
+        <header class="primary-color p-3">
+            <div class="mx-3">
+                <div class="flex justify-content-between">
+                    <!--            <div [appColorfulText]="title.toUpperCase()" class=" align-items-center align-content-center text-5xl">-->
+                    <div class=" align-items-center align-content-center text-5xl">
+                        {{title|uppercase}}
+                    </div>
+                    <div class="align-items-end align-content-center">
+                        <!--        <p-button [link]="true" [routerLink]="'auth/login'" label="LoginRequest" />-->
+                        @if (!isLoggedIn) {
+                            <a *ngIf="!onLoginPage" class="p-button mr-2" routerLink="auth/login">Login</a>
+                            <a *ngIf="!onSignupPage" class="p-button" routerLink="auth/signup">Sign Up</a>
+                        } @else {
+                            <a class="p-button mr-2" (click)="logout()">Logout</a>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </header>
+    } @else {
+        <p-menubar>
+            <ng-template #start>
+
+                <!--                <img src="../../public/images/hisaab_kitaab.png" height="1024" width="1024" />-->
+                <!--                <img src="../assets/images/hisaab_kitaab.png" height="1024" width="1024" />-->
+                <p-avatar
+                        image="assets/images/hisaab_kitaab.png"
+                        class="mr-2" size="large">
+                </p-avatar>
+                <span class="menuitem-text">Hisaab Kitaab</span>
+            </ng-template>
+
+            <ng-template #end>
+                <div class="flex items-center gap-2">
+                    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                              shape="circle" size="normal" />
+                </div>
+            </ng-template>
+        </p-menubar>
+    }
+    @if (!isLoggedIn) {
+        <div class="app-view-area mx-4">
+            <router-outlet></router-outlet>
+        </div>
+    } @else {
+        <div class="app-view-area mt-1 me-4">
+            <div class="grid h-100">
+                <div class="col-3 h-100">
+                    <p-panelMenu [model]="menuItems">
+                    </p-panelMenu>
+                </div>
+                <div class="col-9">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    }
+    <footer class="mx-3 mb-3">
+        <div class="flex justify-content-end">
+            <a (click)="toggleTheme()" class="px-4 py-2" pRipple>
+                <i [class]="themeIcon"></i>
+            </a>
+        </div>
+    </footer>
+    <p-toast key="app-toast" position="top-center"></p-toast>
+</div>

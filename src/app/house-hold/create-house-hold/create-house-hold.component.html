@@ -1,0 +1,34 @@
+<p-card>
+  <ng-template #header>
+    <div class="flex text-center w-100 px-4 py-2">
+      <h2>House Hold</h2>
+    </div>
+  </ng-template>
+  <ng-template #title>Create</ng-template>
+  <ng-template #subtitle>Create a House Hold</ng-template>
+  <ng-template #content>
+    <div class="house-hold-create-form">
+      <form [formGroup]="newHouseHoldForm">
+
+        <p-inputgroup>
+          <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+          </p-inputgroup-addon>
+          <input formControlName="" pInputText placeholder="Username" />
+        </p-inputgroup>
+
+      </form>
+    </div>
+  </ng-template>
+  <ng-template #footer>
+    <div class="flex align-items-center justify-content-center">
+      <div class="text-center w-6">
+        <p-button [outlined]="true" class="w-full" label="Cancel" severity="secondary" />
+      </div>
+      <div class="text-center w-6">
+        <p-button class="w-full" label="Save" />
+      </div>
+    </div>
+  </ng-template>
+
+</p-card>

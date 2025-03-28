@@ -1,0 +1,10 @@
+{
+  "/hisab-kitab-ws/**": {
+    "target"      : "http://localhost:9201/hisab-kitab-ws/",
+    "secure"      : false,
+    "changeOrigin": true,
+    "pathRewrite" : {
+      "^/": ""
+    }
+  }
+}
