@@ -1,21 +1,98 @@
-<p-card>
-  <ng-template #header>
-    <div class="flex text-center w-100 px-4 py-2">
-      <h2>House Hold</h2>
-    </div>
+<p-card class="flex justify-content-center h-full w-12">
+  <!--    <ng-template #header>-->
+  <!--        <div class="text-center px-4 py-2">-->
+  <!--            <h2>House Hold</h2>-->
+  <!--        </div>-->
+  <!--    </ng-template>-->
+  <ng-template #title>
+    <div class="text-4xl text-center">House Hold</div>
   </ng-template>
-  <ng-template #title>Create</ng-template>
-  <ng-template #subtitle>Create a House Hold</ng-template>
+  <ng-template #subtitle>
+    <div class="text-2xl text-center">Create a House Hold</div>
+  </ng-template>
   <ng-template #content>
     <div class="house-hold-create-form">
       <form [formGroup]="newHouseHoldForm">
+        <div class="input-area grid">
+          <div class="col-6 flex justify-content-center">
+            <p-floatLabel class="mx-2" variant="on">
+              <input formControlName="name" id="name" pInputText />
+              <label for="name">House Hold Name</label>
+            </p-floatLabel>
+          </div>
+          <div class="col-6 flex justify-content-center">
+            <p-floatLabel class="mx-2" variant="on">
+              <input formControlName="address" id="address" pInputText type="text" />
+              <label for="address">House Hold Address</label>
+            </p-floatLabel>
+          </div>
+          <div class="col flex justify-content-center">
+            <p-button (click)="addMember()" label="Add Member" type="button" />
+          </div>
+        </div>
+        <div formArrayName="members">
+          <div *ngFor="let member of members.controls; let i = index;" [formGroupName]="i">
 
-        <p-inputgroup>
-          <p-inputgroup-addon>
-            <i class="pi pi-user"></i>
-          </p-inputgroup-addon>
-          <input formControlName="" pInputText placeholder="Username" />
-        </p-inputgroup>
+            <div class="text-xl flex justify-content-between mb-2">
+              <div>Member {{i + 1}}</div>
+              <div class="text-base">
+                <p-button (click)="removeMember(i)" label="Remove Member" severity="danger"
+                          type="button" />
+              </div>
+            </div>
+            <div class="flex-wrap">
+              <div class="flex justify-content-center mx-2 my-3">
+                <p-floatLabel class="mx-2" variant="on">
+                  <input [id]="'field1_'+(i+1)" formControlName="name" pInputText type="text" />
+                  <label [for]="'field1_'+(i+1)">Member Name</label>
+                </p-floatLabel>
+                <p-floatLabel class="mx-2" variant="on">
+                  <input [id]="'field2_'+(i+1)" formControlName="gender" pInputText type="text" />
+                  <label [for]="'field2_'+(i+1)">Member Gender</label>
+                </p-floatLabel>
+                <p-floatLabel class="mx-2" variant="on">
+                  <input [id]="'field3_'+(i+1)" formControlName="age" pInputText type="text" />
+                  <label [for]="'field3_'+(i+1)">Member Age</label>
+                </p-floatLabel>
+              </div>
+              <div class="flex justify-content-center mx-2 my-3">
+                <p-floatLabel class="mx-2" variant="on">
+                  <input [id]="'field4_'+(i+1)" formControlName="role" pInputText type="text" />
+                  <label [for]="'field4_'+(i+1)">Member Role</label>
+                </p-floatLabel>
+                <p-floatLabel class="mx-2" variant="on">
+                  <input [id]="'field5_'+(i+1)" formControlName="email" pInputText type="text" />
+                  <label [for]="'field5_'+(i+1)">Member Email</label>
+                </p-floatLabel>
+                <p-floatLabel class="mx-2" variant="on">
+                  <input [id]="'field6_'+(i+1)" formControlName="phone" pInputText type="text" />
+                  <label [for]="'field6_'+(i+1)">Member Phone</label>
+                </p-floatLabel>
+              </div>
+
+              <div class="flex justify-content-center align-items-center mx-2 my-3">
+                <p-checkbox [id]="'field7_'+(i+1)" [value]="true" formControlName="isHouseHoldAdmin" />
+                <label [for]="'field7_'+(i+1)" class="ml-2">HouseHold Admin?</label>
+
+                <p-fileupload #fu accept="image/*" chooseIcon="pi pi-image"
+                              chooseLabel="Profile Picture"
+                              class="mx-2" mode="basic"
+                              name="imageFile" />
+              </div>
+
+              <div class="flex justify-content-center mx-2 my-3">
+                <!--                                <p-floatLabel class="mx-2" variant="on">-->
+                <!--                                    <input formControlName="" id="field8" pInputText type="text" />-->
+                <!--                                    <label for="field8">2 Field</label>-->
+                <!--                                </p-floatLabel>-->
+                <!--                                <p-floatLabel class="mx-2" variant="on">-->
+                <!--                                    <input formControlName="" id="field9" pInputText type="text" />-->
+                <!--                                    <label for="field9">3 Field</label>-->
+                <!--                                </p-floatLabel>-->
+              </div>
+            </div>
+          </div>
+        </div>
 
       </form>
     </div>
